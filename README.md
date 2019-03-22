@@ -62,9 +62,12 @@ This application is packaged as a war which has Tomcat 8 embedded. No Tomcat ins
 * Once successfully built, you can run the service by one of these two methods:
 
 ```
+
+ java -jar target/TLCBJD-0.0.1-SNAPSHOT.war
+ 
+  or
   
  mvn spring-boot:run
-
 
 ```
 * Visit http://localhost:8080
