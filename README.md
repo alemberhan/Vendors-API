@@ -50,3 +50,24 @@ CREATE TABLE vendor_brands(
 | http://localhost:8080/api/vendors/{id}/brand  | PUT | Add a brand to a vendor  | user/secret
 | http://localhost:8080/api/vendors/{id}  | DELETE | delete Vendor  | user/secret
 | http://localhost:8080/api/vendors/report/count  | GET | Total Count of Vendors  | 
+
+
+# HOW TO RUN
+
+This application is packaged as a war which has Tomcat 8 embedded. No Tomcat installation is necessary. You run it using the java -jar command.
+
+* Clone this repository
+* Make sure you are using JDK 1.8 and Maven 3.x
+* You can build the project and run the tests by running ```mvn clean package```
+* Once successfully built, you can run the service by one of these two methods:
+
+```
+  
+ mvn spring-boot:run
+
+
+```
+* Visit http://localhost:8080
+
+### Developer
+* **Alemberhan Getahun**
