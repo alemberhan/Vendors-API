@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+}
+</style>
+<script>
+	function loadVendors() {
+		//Create the XHR Object
+		let xhr = new XMLHttpRequest;
+		//Call the open function, GET-type of request, url, true-asynchronous
+		xhr.open('GET', '/api/vendors', true)
+		//call the onload 
+		xhr.onload = function() {
+			//check if the status is 200(means everything is okay)
+			if (this.status === 200) {
+				//return server response as an object with JSON.parse
+				var data = (JSON.parse(this.responseText));
+				if (data) {
+					var table = "<tr><th>Name</th><th>Phone</th><th>Region</th><th>Brand</th></tr>";
+					for (x in data) {
+
+						table += "<tr><td>" + data[x].name + "</td><td>"
+								+ data[x].phone + "</td><td>" + data[x].region
+								+ "</td><td>";
+						for (y in data[x].brands) {
+							table += data[x].brands[y].name + "</td></tr>";
+							;
+						}
+					}
+				}
+				document.getElementById("vendorList").innerHTML = table;
+			} else if (this.status === 403) {
+				alert("403 - Forbidden!!!!!");
+			} else if (this.status === 401) {
+				alert("401 - Unauthorized!!!!!");
+			}
+		}
+		//call send
+		xhr.send();
+		//Common Types of HTTP Statuses
+		// 200: OK
+		// 404: ERROR
+		// 403: FORBIDDEN
+	}
+	function loadVendorCount() {
+		//Create the XHR Object
+		let xhr = new XMLHttpRequest;
+		//Call the open function, GET-type of request, url, true-asynchronous
+		xhr.open('GET', '/api/vendors/report/count', true)
+		//call the onload 
+		xhr.onload = function() {
+			//check if the status is 200(means everything is okay)
+			if (this.status === 200) {
+				//return server response as an object with JSON.parse
+				var data = (JSON.parse(this.responseText));
+				if (data) {
+					var table = "<tr><th>Total Vendors</th></tr><tr><th>"
+							+ data + "</th></tr>";
+				}
+				document.getElementById("vendorTotal").innerHTML = table;
+			}
+		}
+		//call send
+		xhr.send();
+		//Common Types of HTTP Statuses
+		// 200: OK
+		// 404: ERROR
+		// 403: FORBIDDEN
+	}
+</script>
+
+<body>
+	<h4>Welcome to Vendor Directory</h4>
+	<form action=""></form>
+	<button type="button" onclick="loadVendors()">View List of
+		Vendors</button>
+	<button type="button" onclick="loadVendorCount()">View Total
+		Number of Vendors</button>
+	<button type="button"  onclick="location.href='/addVendor';" >Add Vendor</button>
+	<br>
+	<br>
+	<table id="vendorList"></table>
+	<br>
+	<br>
+	<table id="vendorTotal"></table>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h3>Add Vendor</h3>
+	<form action="#" th:action="@{/api/vendors}" th:object="${vendor}"
+		method="post">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" th:field="*{name}" /></td>
+				</tr>
+				<tr>
+					<td>Phone:</td>
+					<td><input type="text" th:field="*{phone}" /></td>
+				</tr>
+				<tr>
+					<td>Region:</td>
+					<td><input type="text" th:field="*{region}" /></td>
+				</tr>
+				<tr>
+					<td>Brand:</td>
+					<td><input type="text" th:field="*{brands}" /> <br>Multiple Brands separate by comma(,)</td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><input type="submit" value="Add Vendor" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<br />
+	<br />
+
+</body>
+</html>
